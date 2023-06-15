@@ -1,0 +1,29 @@
+name: Continuous Integration
+
+on:
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: installing pytest
+        run: pip install pytest
+
+      - name: run tests
+        run: python -m pytest -v
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: installing pylint
+        run: pip install pylint
+
+      - name: run lint
+        run: python -m pylint main.py
